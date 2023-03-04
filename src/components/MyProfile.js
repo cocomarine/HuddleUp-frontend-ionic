@@ -3,6 +3,7 @@ import "../styles/myprofile.css";
 
 const MyProfile = () => {
   return <div>
+    
     My Profile
   </div>;
 };

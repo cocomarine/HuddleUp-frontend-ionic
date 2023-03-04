@@ -8,26 +8,22 @@ import MyProfile from "./MyProfile";
 import JoinEvents from "./JoinEvents";
 import MyEvents from "./MyEvents";
 
+// import ShowingNavBar from "./ShowingNavBar";
+
 function App() {
   return (
     <div className="App">
       <div>
         <BrowserRouter>
-        <Navbar />
+            <Navbar />
           <Routes>
+            <Route path="/" element={<Home />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/login" element={<LogIn />}></Route>
             <Route path="/myProfile" element={<MyProfile />}></Route>
             <Route path="/joinevents" element={<JoinEvents />}></Route>
             <Route path="/myevents" element={<MyEvents />}></Route>
           </Routes>
-        </BrowserRouter>
-      </div>
-      <div>
-      <BrowserRouter>
-          <Routes>
-      <Route path="/" element={<Home />}></Route>
-      </Routes>
         </BrowserRouter>
       </div>
     </div>
