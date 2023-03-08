@@ -9,6 +9,7 @@ import MyProfile from "./MyProfile";
 import JoinEvents from "./JoinEvents";
 import MyEvents from "./MyEvents";
 import LogOut from "./Logout";
+import CreateEvent from "./CreateEvent";
 
 import "../styles/app.css";
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/myprofile" element={<MyProfile />}></Route>
+            <Route path="/createevent" element={<CreateEvent />}></Route>
             {/* <Route
               path="/myProfile"
               element={user ? <MyProfile /> : <Navigate to="/login" />}
