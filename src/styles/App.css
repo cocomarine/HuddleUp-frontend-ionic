@@ -5,4 +5,13 @@
   box-sizing: border-box;
   font-family: "poppins";
   text-align: center;
+ 
 }
+/* .backgroundLogo{
+  background-image: url(../../public/AdobeStock_375037420.jpeg);
+  background-size: cover;
+  opacity: 0.6;
+  align-items: center;
+  display: grid;
+  
+} */

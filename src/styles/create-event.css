@@ -1,4 +1,4 @@
-.CreatePgcontainer {
+.eventPgcontainer {
   width: 100%;
   height: 100vh;
   padding: 15px;
@@ -8,7 +8,27 @@
   position: flex;
   margin-top: 70px;
 }
-.list :hover{
-    background-color: rgb(57, 57, 245);
-    
+.eventPgtitle {
+  font-size: 25px;
+  text-align: center;
+}
+
+.eventForm {
+  font-weight: 500;
+}
+.eventForm input {
+  background-color: white;
+  height: 30px;
+  margin: 10px;
+  width: 180px;
+}
+
+.list {
+  font-size: 17px;
+  list-style: none;
+  cursor: pointer;
+}
+.list :hover {
+  background-color: rgb(52, 68, 250);
+  color: white;
 }

@@ -9,7 +9,7 @@ import MyProfile from "./MyProfile";
 import JoinEvents from "./JoinEvents";
 import MyEvents from "./MyEvents";
 import LogOut from "./Logout";
-import CreateEvent from "./CreateEvent";
+import CreateEvent from "./CreateEvent/CreateEvent";
 
 import "../styles/app.css";
 
@@ -19,28 +19,30 @@ function App() {
   return (
     <div className="App">
       <div>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/myprofile" element={<MyProfile />}></Route>
-            <Route path="/createevent" element={<CreateEvent />}></Route>
-            {/* <Route
+        <div className="backgroundLogo">
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/signup" element={<SignUp />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/myprofile" element={<MyProfile />}></Route>
+              <Route path="/createevent" element={<CreateEvent />}></Route>
+              {/* <Route
               path="/myProfile"
               element={user ? <MyProfile /> : <Navigate to="/login" />}
             /> */}
-            <Route
-              path="/joinevents"
-              element={user ? <JoinEvents /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/myevents"
-              element={user ? <MyEvents /> : <Navigate to="/login" />}
-            />
-          </Routes>
-        </BrowserRouter>
+              <Route
+                path="/joinevents"
+                element={user ? <JoinEvents /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/myevents"
+                element={user ? <MyEvents /> : <Navigate to="/login" />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </div>
       </div>
     </div>
   );
