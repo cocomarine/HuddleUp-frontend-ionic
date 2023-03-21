@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,11 +11,13 @@ import {
   faTicket,
   faChildReaching,
   faUsers,
+  faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useAuthContext } from "../../hooks/useAuthContext";
+import PlaceInput from "./PlaceInput";
+import MapPlaces from "./MapPlaces";
 import Alert from "../Alert";
-// import PlaceInput from "./PlaceInput";
 
 import "../../styles/common/titles.css";
 import "../../styles/event-card.css";
@@ -38,13 +41,20 @@ const EventCard = ({
   const [voteCount, setVoteCount] = useState(); //number of votes for a suggestion
   // const [sugVotes, setSugVotes] = useState({}); // storing votes for each suggestion of the event
   const [sugSelected, setSugSelected] = useState(false); // boolean for selected or not for this user and for this suggestion
-  const [newSuggestion, setNewSuggestion] = useState("");
+  const [newSuggestion, setNewSuggestion] = useState();
   const [alert, setAlert] = useState({
     message: "",
     isSuccess: false,
   }); 
 
   const { user } = useAuthContext();
+
+  const navigate = useNavigate();
+
+  const changeLocation = (redirect) => {
+    navigate(redirect, { replace: true });
+    // window.location.reload();
+  };
 
   const getAdminName = (event) => {
     const adminID = event.AdminId;
@@ -232,13 +242,14 @@ const EventCard = ({
         message: "Please enter new suggestion",
         isSuccess: false,
       });
-      setNewSuggestion("");
+      setNewSuggestion();
       return;
     }
 
     axios
       .post(`http://localhost:4000/suggestions`, {
-         suggestion: newSuggestion,
+         suggestion: newSuggestion.place_name,
+         place_id: newSuggestion.place_id,
          votes: 0,
          UserId: user.id,
          EventId: id,
@@ -246,7 +257,7 @@ const EventCard = ({
       .then((res) => {
         console.log(res.config.data)
         setSuggestions([...suggestions, res.config.data]);
-        setNewSuggestion("");
+        setNewSuggestion();
         setAlert({
           message: "Suggestion successfully added",
           isSuccess: true,
@@ -279,6 +290,12 @@ const EventCard = ({
   return (
     <div className="event-card">
       <div className="event-card-container">
+        <button 
+          className="event-card__map-button"
+          onClick={() => changeLocation("/mapplaces")}
+        >
+          <FontAwesomeIcon icon={faLocationDot} />
+        </button>
         <div className="event-card__title heading1">
           <FontAwesomeIcon
             size="lg"
@@ -311,20 +328,24 @@ const EventCard = ({
           {!userSuggestion && <div className="suggestion-input-container">
             <form className="even-card__suggestions__form" onSubmit={handleSubmitSuggestion} >
               <Alert message={alert.message} success={alert.isSuccess} />
-              <input 
+              {/* <input 
                 type="text" 
                 className="suggestion__input"
                 value={newSuggestion}
                 onChange={(e) => setNewSuggestion(e.target.value)}
+              /> */}
+              <PlaceInput
+                // newSuggestion={newSuggestion}
+                setNewSuggestion={setNewSuggestion}
+                // onSubmit={handleSubmitSuggestion}
               />
               <button 
                 type="submit" 
-                className="suggestion__button" 
+                className="suggestion__button link-button" 
               >
                 Submit
               </button>
             </form>
-            {/* <PlaceInput /> */}
           </div>}
         </div>
       </div>
@@ -336,7 +357,7 @@ EventCard.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
 };
 
