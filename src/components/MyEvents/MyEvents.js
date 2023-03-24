@@ -146,8 +146,16 @@ const MyEvents = () => {
               :
               <></>
             }
-          </div>
+        </div>
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <ScrollToTop smooth component={<IoIosArrowUp />} />
     </div>
   );

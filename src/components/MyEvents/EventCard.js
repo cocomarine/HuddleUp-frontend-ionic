@@ -255,7 +255,7 @@ const EventCard = ({
          EventId: id,
       })
       .then((res) => {
-        console.log(res.config.data)
+        // console.log(res.config.data)
         setSuggestions([...suggestions, res.config.data]);
         setNewSuggestion();
         setAlert({
